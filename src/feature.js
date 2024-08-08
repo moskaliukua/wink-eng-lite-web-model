@@ -186,10 +186,7 @@ var feature = function ( config, lang, featuresData, isLexicographer ) {
       const hash = cache.lookup( wordInLC )[ 0 ];
       if ( hash < cache.intrinsicSize() ) {
         // Found, extract pos of lower cased word.
-        const posOfWLC = cache.posOf( hash );
-        // Force uppercase & titlecase words to PROPN except for the forst token of the sentence.
-        const isFirstToken = ( prevWord === null || (/^[\t\r\n.?!]+$/).test( prevWord ) );
-        pos = ( ( rgxTC.test( word ) || rgxUC.test( word ) ) && !isFirstToken ) ? 12 : posOfWLC;
+        pos = cache.posOf( hash );
       } else {
         pos = oovPoS( word );
         // Word but completely missing from lexicon: if it is word-like then
